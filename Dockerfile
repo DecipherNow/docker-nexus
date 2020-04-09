@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM alpine:3.8 as builder
+FROM alpine:3.11 as builder
 
 ARG NEXUS_VERSION=3.21.2-03
 
@@ -28,9 +28,9 @@ RUN curl -sSL https://download.sonatype.com/nexus/3/nexus-${NEXUS_VERSION}-unix.
 RUN mv nexus-${NEXUS_VERSION} nexus
 
 
-FROM alpine:3.8
+FROM alpine:3.11
 
-LABEL maintainer="Joshua Rutherford <joshua.rutherfor@deciphernow.com>"
+LABEL maintainer="Decipher Engineering <build@greymatter.io>"
 
 RUN apk --no-cache add \
   openjdk8-jre
