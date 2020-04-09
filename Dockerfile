@@ -33,7 +33,8 @@ FROM alpine:3.11
 LABEL maintainer="Decipher Engineering <build@greymatter.io>"
 
 RUN apk --no-cache add \
-  openjdk8-jre
+  openjdk8-jre \
+  curl
 
 WORKDIR /usr/local/share/nexus
 
