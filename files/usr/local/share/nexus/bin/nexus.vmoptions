@@ -20,6 +20,7 @@
 -XX:+LogVMOutput
 -XX:LogFile=/var/lib/nexus/sonatype-work/nexus3/log/jvm.log
 -XX:-OmitStackTraceInFastThrow
+-Djava.endorsed.dirs=lib/endorsed
 -Djava.net.preferIPv4Stack=true
 -Dkaraf.home=.
 -Dkaraf.base=.
