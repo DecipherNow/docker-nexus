@@ -22,23 +22,44 @@ This image launches with the default administrator username and password.  In th
 
 ## Building
 
-To build a new image from this repository:
+The Nexus release cycle is extremely short and updates are often made to remedy security vulnerabilities.  Therefore, this repository is configured to build from the latest released version of Nexus to ensure the latest security patches are included.
 
-        ./build.sh
+To build a new image from this repository run:
 
-This will build and tag the version of Nexus defined in the [VERSION](VERSION) file. Alternatively, you can build a specific version of Nexus by providing a version number:
+        make
 
-        ./build.sh 3.15.0-01
+This will build the following images:
+
+        deciphernow/nexus:latest
+
+## Tagging
+
+The default build only creates the `latest` image but you can use that image to generate tagged versions by running:
+
+To build a new image from this repository run:
+
+        make tag
+
+This will tag the following images from the `deciphernow/nexus:latest` image:
+
+        deciphernow/nexus:<major>
+        deciphernow/nexus:<major>.<minor>
+        deciphernow/nexus:<major>.<minor>.<patch>
+        deciphernow/nexus:<major>.<minor>.<patch>-<build>
 
 ## Publishing
 
-To publish the image built by this repository:
+In order to publish latest released version of Nexus run:
 
-        ./publish.sh
+        make publish
 
-This will publish the tags corresponding to the version defined in the [VERSION](VERSION) file. Alternatively, you can publish a specific tags by providing a version number:
+This will push the following images:
 
-        ./publish.sh 3.15.0-01
+        deciphernow/nexus:latest
+        deciphernow/nexus:<major>
+        deciphernow/nexus:<major>.<minor>
+        deciphernow/nexus:<major>.<minor>.<patch>
+        deciphernow/nexus:<major>.<minor>.<patch>-<build>
 
 ## Contributing
 

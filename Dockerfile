@@ -12,29 +12,25 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM alpine:3.11 as builder
-
-ARG NEXUS_VERSION=3.21.2-03
+FROM alpine:3.12 as builder
 
 RUN apk --no-cache add \
-  curl \
-  git \
-  maven \
-  openjdk8-jre
+  curl
 
 WORKDIR /usr/local/share
 
-RUN curl -sSL https://download.sonatype.com/nexus/3/nexus-${NEXUS_VERSION}-unix.tar.gz | tar -xz
-RUN mv nexus-${NEXUS_VERSION} nexus
+RUN curl -sSL https://download.sonatype.com/nexus/3/latest-unix.tar.gz > ./nexus.tar.gz
+RUN echo "$(curl -sSL https://download.sonatype.com/nexus/3/latest-unix.tar.gz.md5)  ./nexus.tar.gz" > ./nexus.tar.gz.md5
+RUN md5sum -c ./nexus.tar.gz.md5
+RUN tar -xf ./nexus.tar.gz && rm ./nexus.tar.gz ./nexus.tar.gz.md5 && mv ./nexus* ./nexus
+RUN curl -sSLI https://download.sonatype.com/nexus/3/latest-unix.tar.gz.md5 | grep -o '[0-9]\+\.[0-9]\+\.[0-9]\+\-[0-9]\+' > ./nexus/VERSION
 
-
-FROM alpine:3.11
+FROM alpine:3.12
 
 LABEL maintainer="Decipher Engineering <build@greymatter.io>"
 
 RUN apk --no-cache add \
-  openjdk8-jre \
-  curl
+  openjdk8-jre
 
 WORKDIR /usr/local/share/nexus
 
