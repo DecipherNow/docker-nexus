@@ -24,13 +24,24 @@ This image launches with the default administrator username and password.  In th
 
 The Nexus release cycle is extremely short and updates are often made to remedy security vulnerabilities.  Therefore, this repository is configured to build from the latest released version of Nexus to ensure the latest security patches are included.
 
-To build new images from this repository run:
+To build a new image from this repository run:
 
         make
 
 This will build the following images:
 
         deciphernow/nexus:latest
+
+## Tagging
+
+The default build only creates the `latest` image but you can use that image to generate tagged versions by running:
+
+To build a new image from this repository run:
+
+        make tag
+
+This will tag the following images from the `deciphernow/nexus:latest` image:
+
         deciphernow/nexus:<major>
         deciphernow/nexus:<major>.<minor>
         deciphernow/nexus:<major>.<minor>.<patch>

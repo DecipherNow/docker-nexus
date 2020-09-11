@@ -8,6 +8,8 @@ jobs:
       - checkout
       - setup_remote_docker
       - run: docker login -u "${DOCKER_USER}" -p "${DOCKER_PASS}"
+      - run: make
+      - run: make tag
       - run: make publish
 
 workflows:
